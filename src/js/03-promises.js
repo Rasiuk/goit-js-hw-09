@@ -23,19 +23,19 @@ function createPromise(position, delay) {
 refs.createPromiseBtn.addEventListener('click', onCreatePromiseclick);
 function onCreatePromiseclick(evt) {
   evt.preventDefault();
-  const firsDelay = refs.firsDelay.value;
-  const delay = refs.delayStep.value;
+  let delay = refs.firsDelay.value;
+  let step = refs.delayStep.value;
   let position = 1;
   const amount = refs.amount.value;
-  setTimeout(() => {
-    for (let i = 0; i < amount; i += 1) {
-      createPromise(position, delay * i)
-        .then(res => onResolve(res))
-        .catch(rej => onReject(rej));
 
-      position += 1;
-    }
-  }, firsDelay);
+  for (let i = 0; i < amount; i += 1) {
+    delay = Number.parseInt(delay) + Number.parseInt(step);
+    createPromise(position, delay)
+      .then(res => onResolve(res))
+      .catch(rej => onReject(rej));
+
+    position += 1;
+  }
 }
 function onResolve(res) {
   Notify.success(res);
