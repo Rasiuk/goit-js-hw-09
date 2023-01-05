@@ -43,6 +43,7 @@ function startTimer() {
   updateClockface(timeToEnd);
 }
 function onStartClick(evt) {
+  refs.input.disabled = true;
   refs.startBtn.disabled = true;
   const timeId = setInterval(startTimer, 1000);
 }

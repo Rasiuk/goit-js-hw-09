@@ -25,16 +25,16 @@ function onCreatePromiseclick(evt) {
   evt.preventDefault();
   let delay = refs.firsDelay.value;
   let step = refs.delayStep.value;
-  let position = 1;
+  // let position = 1;
   const amount = refs.amount.value;
 
   for (let i = 0; i < amount; i += 1) {
-    delay = Number.parseInt(delay) + Number.parseInt(step);
-    createPromise(position, delay)
+    createPromise(i + 1, delay)
       .then(res => onResolve(res))
       .catch(rej => onReject(rej));
 
-    position += 1;
+    delay = Number.parseInt(delay) + Number.parseInt(step);
+    // position += 1;
   }
 }
 function onResolve(res) {
